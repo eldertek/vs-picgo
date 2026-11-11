@@ -10,10 +10,10 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '14'
+          node-version: '20'
 
       # https://github.com/juliangruber/browser-run/issues/147#issuecomment-580958935
       - run: sudo apt-get install xvfb

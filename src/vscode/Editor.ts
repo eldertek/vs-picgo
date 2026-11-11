@@ -8,8 +8,15 @@ export class Editor {
 
   static async writeToEditor(text: string) {
     const editor = this.editor
-    return await editor?.edit((textEditor) => {
-      textEditor.replace(editor.selection, text)
+    if (!editor) {
+      return false
+    }
+    return await editor.edit((textEditor) => {
+      if (editor.selection) {
+        textEditor.replace(editor.selection, text)
+      } else {
+        textEditor.insert(editor.document.positionAt(0), text)
+      }
     })
   }
 }

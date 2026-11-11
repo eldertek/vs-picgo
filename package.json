@@ -14,16 +14,20 @@
     "image upload",
     "picture upload"
   ],
-  "version": "2.1.6",
+  "version": "2.2.0",
+  "sponsor": {
+    "url": "https://www.patreon.com/eldertek"
+  },
   "publisher": "Spades",
   "engines": {
-    "vscode": "^1.60.0"
+    "vscode": "^1.85.0"
   },
   "categories": [
     "Other"
   ],
   "icon": "logo.png",
   "activationEvents": [
+    "onStartupFinished",
     "onCommand:picgo.uploadImageFromClipboard",
     "onCommand:picgo.uploadImageFromExplorer",
     "onCommand:picgo.uploadImageFromInputBox",

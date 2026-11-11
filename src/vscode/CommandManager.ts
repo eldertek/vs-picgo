@@ -61,11 +61,15 @@ export class CommandManager {
       placeHolder: 'Please input an image location path'
     })
     // check if `result` is a path of image file
-    const imageReg = /\.(png|jpg|jpeg|webp|gif|bmp|tiff|ico|svg)$/
+    const imageReg = /\.(png|jpg|jpeg|webp|gif|bmp|tiff|ico|svg)$/i
     if (result && imageReg.test(result)) {
+      const activeDocPath = Editor.editor?.document.uri.fsPath
+      const baseDir = activeDocPath
+        ? path.dirname(activeDocPath)
+        : vscode.workspace.workspaceFolders?.[0]?.uri.fsPath ?? ''
       result = path.isAbsolute(result)
         ? result
-        : path.join(Editor.editor?.document.uri.fsPath ?? '', '../', result)
+        : path.resolve(baseDir, result)
       if (fs.existsSync(result)) {
         return await this.uploadCommand([result])
       } else {
